@@ -1,4 +1,7 @@
+from multiprocessing.connection import Client
 from unittest import TestCase
+
+from django.urls import reverse
 
 from flashcards.core.models import Deck, Card
 
@@ -11,3 +14,7 @@ class DeckListViewTest(TestCase):
         Deck.objects.create(id=2, name="Test Deck 2")
         Card.objects.create(deck_id=2, front="Test Front 2", back="Test Back 2")
         Card.objects.create(deck_id=2, front="Test Front 3", back="Test Back 3")
+
+    def setUp(self):
+        self.client = Client()
+        self.deck_list_url = reverse('deck_list')
