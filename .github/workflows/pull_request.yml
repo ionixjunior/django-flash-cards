@@ -30,7 +30,7 @@ jobs:
     
     - name: Run pylint
       run: |
-        pylint --recursive=y .
+        pylint --django-settings-module=flashcards.settings .
     
     - name: Run tests
       run: |
