@@ -1,9 +1,9 @@
-from multiprocessing.connection import Client
 from unittest import TestCase
 
+from django.test import Client
 from django.urls import reverse
 
-from flashcards.core.models import Deck, Card
+from .models import Deck, Card
 
 
 class DeckListViewTest(TestCase):
@@ -18,3 +18,7 @@ class DeckListViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.deck_list_url = reverse('deck_list')
+
+    def test_decklist_when_accessed_should_return_200(self):
+        response = self.client.get(self.deck_list_url)
+        self.assertEqual(response.status_code, 200)
