@@ -6,7 +6,7 @@ class Deck(models.Model):
     last_studied = models.DateTimeField()
 
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 
 class Card(models.Model):
