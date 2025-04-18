@@ -31,3 +31,9 @@ class DeckListViewTest(TestCase):
         deck_names = [deck.name for deck in response.context['decks']]
         self.assertIn("Test Deck 1", deck_names)
         self.assertIn("Test Deck 2", deck_names)
+
+    def test_decklist_when_accessed_should_list_number_of_cards_of_each_deck(self):
+        response = self.client.get(self.deck_list_url)
+        deck_cards_count = {deck.name: deck.card_set.count() for deck in response.context['decks']}
+        self.assertEqual(deck_cards_count["Test Deck 1"], 1)
+        self.assertEqual(deck_cards_count["Test Deck 2"], 2)
