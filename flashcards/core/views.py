@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from flashcards.core.models import Deck
+from .models import Deck
 
 
 def deck_list(request):
