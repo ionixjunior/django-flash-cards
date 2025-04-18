@@ -4,4 +4,27 @@
 
 {% block content %}
 <h1>My decks</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of cards</th>
+            <th>Last time studied</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deck in decks %}
+        <tr>
+            <td>{{ deck.name }}</td>
+            <td></td>
+            <td>{{ deck.last_studied|date:"Y-m-d H:i:s" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No decks available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
