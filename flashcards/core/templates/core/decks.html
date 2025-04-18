@@ -18,7 +18,7 @@
         <tr>
             <td>{{ deck.name }}</td>
             <td>{{ deck.card_set.count }}</td>
-            <td>{{ deck.last_studied|date:"Y-m-d H:i:s" }}</td>
+            <td>{{ deck.last_studied|date:"Y-m-d H:i:s"|default:"never used" }}</td>
         </tr>
         {% empty %}
         <tr>
