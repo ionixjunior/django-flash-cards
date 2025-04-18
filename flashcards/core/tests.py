@@ -25,3 +25,9 @@ class DeckListViewTest(TestCase):
         response = self.client.get(self.deck_list_url)
         self.assertTrue('decks' in response.context)
         self.assertEqual(len(response.context['decks']), 2)
+
+    def test_decklist_when_accessed_should_list_all_deck_names(self):
+        response = self.client.get(self.deck_list_url)
+        deck_names = [deck.name for deck in response.context['decks']]
+        self.assertIn("Test Deck 1", deck_names)
+        self.assertIn("Test Deck 2", deck_names)
