@@ -1,6 +1,4 @@
-from unittest import TestCase
-
-from django.test import Client
+from django.test import TestCase, Client
 from django.urls import reverse
 
 from .models import Deck, Card
@@ -22,3 +20,8 @@ class DeckListViewTest(TestCase):
     def test_decklist_when_accessed_should_return_200(self):
         response = self.client.get(self.deck_list_url)
         self.assertEqual(response.status_code, 200)
+
+    def test_decklist_when_accessed_should_have_decks(self):
+        response = self.client.get(self.deck_list_url)
+        self.assertTrue('decks' in response.context)
+        self.assertEqual(len(response.context['decks']), 2)
