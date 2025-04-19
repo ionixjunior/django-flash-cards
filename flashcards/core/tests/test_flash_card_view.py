@@ -26,8 +26,9 @@ class FlashCardViewTest(TestCase):
         self.assertTrue('deck_name' in response.context)
         self.assertEqual(response.context['deck_name'], "Test Deck 1")
 
-    def test_flash_card_view_when_accessed_should_have_card(self):
+    def test_flash_card_view_when_accessed_should_have_card_info(self):
         response = self.client.get(self.flash_card_url)
 
-        self.assertTrue('card' in response.context)
-        self.assertEqual(response.context['card'].id, self.card1.id)
+        self.assertEqual(response.context['card_id'], self.card1.id)
+        self.assertEqual(response.context['card_front'], self.card1.front)
+        self.assertEqual(response.context['card_back'], self.card1.back)
