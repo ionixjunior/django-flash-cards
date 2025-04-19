@@ -32,3 +32,8 @@ class FlashCardViewTest(TestCase):
         self.assertEqual(response.context['card_id'], self.card1.id)
         self.assertEqual(response.context['card_front'], self.card1.front)
         self.assertEqual(response.context['card_back'], self.card1.back)
+
+    def test_flash_card_view_when_post_request_should_return_200(self):
+        response = self.client.post(self.flash_card_url, {'card_id': self.card1.id, 'feedback': 'again'})
+
+        self.assertEqual(response.status_code, 200)
