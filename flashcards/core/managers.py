@@ -1,6 +1,5 @@
 from django.db import models
 from django.db.models import Q
-from django.template.defaultfilters import first
 
 
 # pylint: disable=too-few-public-methods
