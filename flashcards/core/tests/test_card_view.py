@@ -1,0 +1,13 @@
+
+from django.test import TestCase, Client
+from django.urls import reverse
+
+
+class MyTestCase(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.deck_list_url = reverse('flash_card', args=[1])
+
+    def test_card_view_when_accessed_should_return_200(self):
+        response = self.client.get(self.deck_list_url)
+        self.assertEqual(response.status_code, 200)
