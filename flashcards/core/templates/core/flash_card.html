@@ -14,15 +14,15 @@
     {% csrf_token %}
 
     <div class="flash-card">
-        <div class="card-front">{{ card_front }}</div>
-        <div class="card-back">{{ card_back }}</div>
+        <div class="card-front">{{ card.front }}</div>
+        <div class="card-back">{{ card.back }}</div>
     </div>
 
     <button type="submit" name="feedback" value="again">Again</button>
     <button type="submit" name="feedback" value="hard">Hard</button>
     <button type="submit" name="feedback" value="good">Good</button>
     <button type="submit" name="feedback" value="easy">Easy</button>
-    <input type="hidden" name="card_id" value="{{ card_id }}" />
+    <input type="hidden" name="card_id" value="{{ card.id }}" />
 </form>
 
 <a href="{% url 'deck_list' %}">Back to deck list</a>
