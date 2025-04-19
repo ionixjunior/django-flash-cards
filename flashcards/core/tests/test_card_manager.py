@@ -52,3 +52,13 @@ class CardManagerTest(TestCase):
         next_card = Card.objects.next_card(deck)
 
         self.assertEqual(next_card.id, two_days_before.id)
+
+    def test_next_card_should_return_unreviewed_card(self):
+        one_day_later = datetime.today() + timedelta(days=1)
+        deck = Deck.objects.create(name="Test Deck")
+        Card.objects.create(deck_id=deck, front="Test Front 1", back="Test Back 2", next_review_date=one_day_later)
+        Card.objects.create(deck_id=deck, front="Test Front 2", back="Test Back 2")
+
+        next_card = Card.objects.next_card(deck)
+
+        self.assertEqual(next_card.id, deck.id)
