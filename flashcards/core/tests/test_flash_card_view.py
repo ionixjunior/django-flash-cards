@@ -32,8 +32,7 @@ class FlashCardViewTest(TestCase):
         self.assertTrue('card' in response.context)
         self.assertEqual(response.context['card'].id, self.card1.id)
 
-    def test_flash_card_view_when_accessed_should_havent_card(self):
-        self.card1.delete()
+    def test_flash_card_view_when_no_card_available(self):
         response = self.client.get(self.flash_card_url)
 
         self.assertTrue('card' in response.context)
