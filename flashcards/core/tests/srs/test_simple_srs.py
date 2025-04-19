@@ -13,7 +13,7 @@ class SimpleSRSTest(TestCase):
 
     def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_again(self):
         feedback = 'again'
-        next_review_date = self.today + timedelta(days=0)
+        next_review_date = self.today + timedelta(minutes=1)
 
         result = self.simple_srs.calculate_next_review_date(self.today, feedback)
 
