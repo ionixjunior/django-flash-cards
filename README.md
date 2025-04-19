@@ -85,6 +85,14 @@ APP_TIME_ZONE=YOUT_TIMEZONE
 
 Replace YOUR_TIMEZONE by your timezone. You can find a list of timezones [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). This configuration you display correctly the time in the application.
 
+Also, you can configure the following variables:
+```.env
+APP_DATABASE_FILE=/path/to/database/file
+APP_DEBUG=False/True
+```
+
+The objective of the `APP_DATABASE_FILE` variable is to change the location of the SQLite database file. By default, it is created in the root directory of the project. You can change it to any other location.
+
 ## Usage
 
 1. Create an account or log in into Django Admin
