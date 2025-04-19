@@ -11,3 +11,11 @@
 .flash-card .card-back {
     display: none;
 }
+
+.flash-card.is-flipped .card-front {
+    display: none;
+}
+
+.flash-card.is-flipped .card-back {
+    display: block;
+}
