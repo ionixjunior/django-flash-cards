@@ -5,7 +5,7 @@ from django.urls import reverse
 from ..models import Deck, Card
 
 
-class CardViewTest(TestCase):
+class FlashCardViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.deck1 = Deck.objects.create(name="Test Deck 1")
