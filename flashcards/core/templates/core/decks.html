@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}My decks{% endblock %}
+
+{% block content %}
+<h1>My decks</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number of cards</th>
+            <th>Last time studied</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deck in decks %}
+        <tr>
+            <td>{{ deck.name }}</td>
+            <td>{{ deck.card_set.count }}</td>
+            <td>{{ deck.last_studied|date:"Y-m-d H:i:s"|default:"never used" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No decks available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

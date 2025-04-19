@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flashcards
     
     steps:
     - uses: actions/checkout@v3
@@ -23,12 +26,12 @@ jobs:
     
     - name: Run migrations
       run: |
-        python flashcards/manage.py migrate
+        python manage.py migrate
     
     - name: Run pylint
       run: |
-        pylint --recursive=y flashcards
+        pylint --django-settings-module=flashcards.settings .
     
     - name: Run tests
       run: |
-        python flashcards/manage.py test
+        python manage.py test

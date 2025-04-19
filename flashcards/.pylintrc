@@ -1,0 +1,9 @@
+[MASTER]
+ignore=migrations
+
+disable=
+    C0114,
+    C0115,
+    C0116,
+
+load-plugins=pylint_django
