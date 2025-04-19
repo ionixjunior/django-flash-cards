@@ -16,7 +16,9 @@
     <tbody>
         {% for deck in decks %}
         <tr>
-            <td>{{ deck.name }}</td>
+            <td>
+                <a href="{% url 'flash_card' deck.id %}">{{ deck.name }}</a>
+            </td>
             <td>{{ deck.card_set.count }}</td>
             <td>{{ deck.last_studied|date:"Y-m-d H:i:s"|default:"never used" }}</td>
         </tr>
