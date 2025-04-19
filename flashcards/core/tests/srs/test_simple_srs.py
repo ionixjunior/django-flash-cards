@@ -1,6 +1,7 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.test import TestCase
+from django.utils import timezone
 
 from ...srs.simple_srs import SimpleSRS
 
@@ -8,7 +9,7 @@ from ...srs.simple_srs import SimpleSRS
 class SimpleSRSTest(TestCase):
     def setUp(self):
         self.simple_srs = SimpleSRS()
-        self.today = datetime.now()
+        self.today = timezone.now()
 
     def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_again(self):
         feedback = 'again'
