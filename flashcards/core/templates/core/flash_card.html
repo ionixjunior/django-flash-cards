@@ -11,22 +11,24 @@
 <h1 class="mb-4">Studying: {{ deck_name }}</h1>
 
 {% if card is not None %}
-<form method="post">
-    {% csrf_token %}
+<div class="d-flex flex-column align-items-center">
+    <form method="post">
+        {% csrf_token %}
 
-    <div class="flash-card">
-        <div class="card-front">{{ card.front }}</div>
-        <div class="card-back">{{ card.back }}</div>
-    </div>
+        <div class="flash-card">
+            <div class="card-front">{{ card.front }}</div>
+            <div class="card-back">{{ card.back }}</div>
+        </div>
 
-    <div class="feedback-buttons">
-        <button type="submit" name="feedback" value="again">Again</button>
-        <button type="submit" name="feedback" value="hard">Hard</button>
-        <button type="submit" name="feedback" value="good">Good</button>
-        <button type="submit" name="feedback" value="easy">Easy</button>
-        <input type="hidden" name="card_id" value="{{ card.id }}" />
-    </div>
-</form>
+        <div class="feedback-buttons">
+            <button type="submit" name="feedback" value="again">Again</button>
+            <button type="submit" name="feedback" value="hard">Hard</button>
+            <button type="submit" name="feedback" value="good">Good</button>
+            <button type="submit" name="feedback" value="easy">Easy</button>
+            <input type="hidden" name="card_id" value="{{ card.id }}" />
+        </div>
+    </form>
+</div>
 {% else %}
 <p>No more cards in this deck. Please, go back later.</p>
 {% endif %}
