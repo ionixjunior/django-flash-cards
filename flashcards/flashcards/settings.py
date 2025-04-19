@@ -84,10 +84,14 @@ INTERNAL_IPS = [
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+DATABASE_FILE = os.environ.get('APP_DATABASE_FILE')
+if DATABASE_FILE is None:
+    DATABASE_FILE = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE_FILE,
         'TEST': {
             'NAME': ':memory:',
         }
