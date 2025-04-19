@@ -1,12 +1,13 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 from django.test import TestCase
+from django.utils import timezone
 
 from ..models import Deck, Card
 
 class CardManagerTest(TestCase):
     def test_next_card_should_be_none_when_no_cards_in_deck(self):
-        today = datetime.today()
+        today = timezone.now()
         deck = Deck.objects.create(name="Test Deck")
 
         next_card = Card.objects.next_card(today, deck)
@@ -14,8 +15,8 @@ class CardManagerTest(TestCase):
         self.assertIsNone(next_card)
 
     def test_next_card_should_be_none_when_cards_in_deck_has_future_next_review_date(self):
-        today = datetime.today()
-        next_review_date = datetime.today() + timedelta(days=1)
+        today = timezone.now()
+        next_review_date = today + timedelta(days=1)
         deck = Deck.objects.create(name="Test Deck")
         Card.objects.create(deck_id=deck,
                             front="Test Front",
@@ -27,7 +28,7 @@ class CardManagerTest(TestCase):
         self.assertIsNone(next_card)
 
     def test_next_card_should_return_card_with_today_next_review_date(self):
-        today = datetime.today()
+        today = timezone.now()
         deck = Deck.objects.create(name="Test Deck")
         expected_card = Card.objects.create(deck_id=deck,
                                             front="Test Front",
@@ -39,8 +40,8 @@ class CardManagerTest(TestCase):
         self.assertEqual(next_card.id, expected_card.id)
 
     def test_next_card_should_return_card_with_yesterday_next_review_date(self):
-        today = datetime.today()
-        yesterday = datetime.today() - timedelta(days=1)
+        today = timezone.now()
+        yesterday = today - timedelta(days=1)
         deck = Deck.objects.create(name="Test Deck")
         expected_card = Card.objects.create(deck_id=deck,
                                             front="Test Front",
@@ -52,9 +53,9 @@ class CardManagerTest(TestCase):
         self.assertEqual(next_card.id, expected_card.id)
 
     def test_next_card_should_return_the_older_card(self):
-        two_days_before = datetime.today() - timedelta(days=2)
-        one_day_before = datetime.today() - timedelta(days=1)
-        today = datetime.today()
+        today = timezone.now()
+        two_days_before = today - timedelta(days=2)
+        one_day_before = today - timedelta(days=1)
         deck = Deck.objects.create(name="Test Deck")
         expected_card = Card.objects.create(deck_id=deck,
                                             front="Test Front",
@@ -77,8 +78,8 @@ class CardManagerTest(TestCase):
         self.assertEqual(next_card.id, expected_card.id)
 
     def test_next_card_should_return_unreviewed_card(self):
-        today = datetime.today()
-        one_day_later = datetime.today() + timedelta(days=1)
+        today = timezone.now()
+        one_day_later = today + timedelta(days=1)
         deck = Deck.objects.create(name="Test Deck")
         Card.objects.create(deck_id=deck,
                             front="Test Front 1",
