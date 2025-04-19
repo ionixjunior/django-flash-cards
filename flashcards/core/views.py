@@ -11,6 +11,11 @@ def deck_list(request):
 
 def flash_card(request, deck_id):
     deck = Deck.objects.get(pk=deck_id)
+
+    if request.method == "POST":
+        deck.last_studied = timezone.now()
+        deck.save()
+
     current_date = timezone.now()
     card = Card.objects.next_card(current_date=current_date, deck=deck)
     return render(request,
