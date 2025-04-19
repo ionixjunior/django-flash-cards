@@ -38,7 +38,6 @@ class CardManagerTest(TestCase):
 
         next_card = Card.objects.next_card(deck)
 
-        self.assertIsNotNone(next_card)
         self.assertEqual(next_card.id, deck.id)
 
     def test_nex_card_should_return_the_older_card(self):
