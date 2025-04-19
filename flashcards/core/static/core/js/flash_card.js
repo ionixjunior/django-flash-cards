@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     if (flashcard) {
         flashcard.addEventListener('click', () => {
-            flashcard.classList.toggle('is-flipped');
+            if (!flashcard.classList.contains('is-flipped')) {
+                flashcard.classList.add('is-flipped');
+            }
         });
     }
 });
