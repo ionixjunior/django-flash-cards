@@ -13,6 +13,22 @@ This project is a web-based flash card system that allows users to:
 
 I developed this project just to learn Python and Django. It is a simple application that demonstrates the use of Django for building web applications, and it can be extended with more features in the future.
 
+## Screenshots
+
+Here's a visual overview of the application:
+
+### Decks List
+![Decks List](screenshots/01-deck-list.webp)
+*View your decks*
+
+### Back side of a flash card
+![Back side of a flash card](screenshots/02-flash-card-back.webp)
+*Back side of the flash card, allowing us to click to flip*
+
+### Front side of a flash card
+![Back side of a flash card](screenshots/03-flash-card-front.webp)
+*Front side of a flash card, showing the feedback options*
+
 ## Requirements
 
 The following dependencies are needed:
