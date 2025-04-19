@@ -10,7 +10,7 @@ class SimpleSRSTest(TestCase):
         self.simple_srs = SimpleSRS()
         self.today = datetime.now()
 
-    def test_calculate_next_review_date_should_return_correct_date(self):
+    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_hard(self):
         feedback = 'hard'
         next_review_date = self.today + timedelta(days=1)
 
