@@ -19,11 +19,13 @@
         <div class="card-back">{{ card.back }}</div>
     </div>
 
-    <button type="submit" name="feedback" value="again">Again</button>
-    <button type="submit" name="feedback" value="hard">Hard</button>
-    <button type="submit" name="feedback" value="good">Good</button>
-    <button type="submit" name="feedback" value="easy">Easy</button>
-    <input type="hidden" name="card_id" value="{{ card.id }}" />
+    <div class="feedback-buttons">
+        <button type="submit" name="feedback" value="again">Again</button>
+        <button type="submit" name="feedback" value="hard">Hard</button>
+        <button type="submit" name="feedback" value="good">Good</button>
+        <button type="submit" name="feedback" value="easy">Easy</button>
+        <input type="hidden" name="card_id" value="{{ card.id }}" />
+    </div>
 </form>
 {% else %}
 <p>No more cards in this deck. Please, go back later.</p>
