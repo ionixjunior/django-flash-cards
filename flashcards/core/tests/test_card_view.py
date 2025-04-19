@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 
-class MyTestCase(TestCase):
+class CardViewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.deck_list_url = reverse('flash_card', args=[1])
