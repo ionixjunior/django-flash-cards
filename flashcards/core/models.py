@@ -1,5 +1,7 @@
 from django.db import models
 
+from .managers import CardManager
+
 
 class Deck(models.Model):
     name = models.CharField(max_length=50)
@@ -15,6 +17,8 @@ class Card(models.Model):
     back = models.CharField(max_length=100)
     last_review_date = models.DateTimeField(null=True, blank=True)
     next_review_date = models.DateTimeField(null=True, blank=True)
+
+    objects = CardManager()
 
     def __str__(self):
         return f"{self.front} - {self.back}"
