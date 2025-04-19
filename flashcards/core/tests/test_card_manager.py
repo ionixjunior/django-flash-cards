@@ -39,7 +39,7 @@ class CardManagerTest(TestCase):
 
         self.assertEqual(next_card.id, deck.id)
 
-    def test_nex_card_should_return_the_older_card(self):
+    def test_next_card_should_return_the_older_card(self):
         two_days_before = datetime.today() - timedelta(days=2)
         one_day_before = datetime.today() - timedelta(days=1)
         today = datetime.today()
