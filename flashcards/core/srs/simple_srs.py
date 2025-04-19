@@ -11,7 +11,7 @@ class SimpleSRS:
     }
 
     INTERVALS = {
-        0: timedelta(days=0),
+        0: timedelta(minutes=1),
         1: timedelta(days=1),
         2: timedelta(days=3),
         3: timedelta(days=7),
