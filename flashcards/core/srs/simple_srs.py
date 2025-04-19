@@ -15,4 +15,4 @@ class SimpleSRS:
         if feedback == 'easy':
             return today + timedelta(days=7)
 
-        return None
+        return today + timedelta(days=0)
