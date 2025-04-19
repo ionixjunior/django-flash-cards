@@ -8,6 +8,11 @@
 <form method="post">
     {% csrf_token %}
 
+    <div class="flash-card">
+        <div class="front">{{ card.front }}</div>
+        <div class="back">{{ card.back }}</div>
+    </div>
+
     <button type="submit" name="feedback" value="again">Again</button>
     <button type="submit" name="feedback" value="hard">Hard</button>
     <button type="submit" name="feedback" value="good">Good</button>
