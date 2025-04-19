@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.utils import timezone
 
-from .models import Deck
+from .models import Deck, Card
 
 
 def deck_list(request):
@@ -10,4 +11,8 @@ def deck_list(request):
 
 def flash_card(request, deck_id):
     deck = Deck.objects.get(pk=deck_id)
-    return render(request, "core/flash_card.html", {"deck_name": deck.name})
+    current_date = timezone.now()
+    card = Card.objects.next_card(current_date=current_date, deck=deck)
+    return render(request,
+                  "core/flash_card.html",
+                  {"deck_name": deck.name, "card": card})
