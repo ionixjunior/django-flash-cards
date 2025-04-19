@@ -37,3 +37,10 @@ class FlashCardViewTest(TestCase):
         response = self.client.post(self.flash_card_url, {'card_id': self.card1.id, 'feedback': 'again'})
 
         self.assertEqual(response.status_code, 200)
+
+    def test_flash_card_view_when_post_request_should_update_card(self):
+        self.client.post(self.flash_card_url, {'card_id': self.card1.id, 'feedback': 'again'})
+
+        self.card1.refresh_from_db()
+        self.assertNotEqual(self.card1.next_review_date, None)
+        self.assertNotEqual(self.card1.last_review_date, None)
