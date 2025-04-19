@@ -30,9 +30,4 @@ def flash_card(request, deck_id):
     card = Card.objects.next_card(current_date=current_date, deck=deck)
     return render(request,
                   "core/flash_card.html",
-                  {
-                      "deck_name": deck.name,
-                      "card_id": card.id,
-                      "card_front": card.front,
-                      "card_back": card.back
-                  })
+                  {"deck_name": deck.name, "card": card})
