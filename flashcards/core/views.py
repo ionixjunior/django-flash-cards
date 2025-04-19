@@ -9,4 +9,5 @@ def deck_list(request):
 
 
 def flash_card(request, deck_id):
-    return render(request, "core/flash_card.html")
+    deck = Deck.objects.get(pk=deck_id)
+    return render(request, "core/flash_card.html", {"deck_name": deck.name})
