@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Studying: {{ deck_name }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/css/flash_card.css' %}">
+{% endblock %}
 
 {% block content %}
 <h1>Studying: {{ deck_name }}</h1>
