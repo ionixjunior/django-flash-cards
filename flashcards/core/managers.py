@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, F
 
 
 # pylint: disable=too-few-public-methods
@@ -10,7 +10,7 @@ class CardManager(models.Manager):
         ).filter(
             Q(next_review_date__lte=current_date) | Q(next_review_date__isnull=True)
         ).order_by(
-            'next_review_date'
+            F('next_review_date').asc(nulls_last=True)
         ).first()
 
         return card
