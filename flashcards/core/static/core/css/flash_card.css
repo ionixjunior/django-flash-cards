@@ -1,0 +1,25 @@
+.flash-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    cursor: pointer;
+    width: 300px;
+    min-height: 150px;
+    position: relative;
+}
+
+.flash-card .card-back {
+    display: none;
+}
+
+.flash-card.is-flipped .card-front {
+    display: none;
+}
+
+.flash-card.is-flipped .card-back {
+    display: block;
+}
+
+.feedback-buttons {
+    display: none;
+}

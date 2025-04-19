@@ -1,18 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Studying: {{ deck_name }}{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/css/flash_card.css' %}">
+{% endblock %}
 
 {% block content %}
 <h1>Studying: {{ deck_name }}</h1>
 
+{% if card is not None %}
 <form method="post">
     {% csrf_token %}
 
-    <button type="submit" name="feedback" value="again">Again</button>
-    <button type="submit" name="feedback" value="hard">Hard</button>
-    <button type="submit" name="feedback" value="good">Good</button>
-    <button type="submit" name="feedback" value="easy">Easy</button>
+    <div class="flash-card">
+        <div class="card-front">{{ card.front }}</div>
+        <div class="card-back">{{ card.back }}</div>
+    </div>
+
+    <div class="feedback-buttons">
+        <button type="submit" name="feedback" value="again">Again</button>
+        <button type="submit" name="feedback" value="hard">Hard</button>
+        <button type="submit" name="feedback" value="good">Good</button>
+        <button type="submit" name="feedback" value="easy">Easy</button>
+        <input type="hidden" name="card_id" value="{{ card.id }}" />
+    </div>
 </form>
+{% else %}
+<p>No more cards in this deck. Please, go back later.</p>
+{% endif %}
 
 <a href="{% url 'deck_list' %}">Back to deck list</a>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'core/js/flash_card.js' %}" defer></script>
 {% endblock %}
