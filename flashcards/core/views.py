@@ -12,19 +12,19 @@ def deck_list(request):
 
 def flash_card(request, deck_id):
     deck = Deck.objects.get(pk=deck_id)
+    current_date = timezone.now()
 
     if request.method == "POST":
-        deck.last_studied = timezone.now()
+        deck.last_studied = current_date
         deck.save()
 
         card_id = request.POST.get("card_id")
         feedback = request.POST.get("feedback")
         card = Card.objects.get(pk=card_id)
-        card.last_review_date = timezone.now()
-        card.next_review_date = SimpleSRS().calculate_next_review_date(today=timezone.now(), feedback=feedback)
+        card.last_review_date = current_date
+        card.next_review_date = SimpleSRS().calculate_next_review_date(today=current_date, feedback=feedback)
         card.save()
 
-    current_date = timezone.now()
     card = Card.objects.next_card(current_date=current_date, deck=deck)
     return render(request,
                   "core/flash_card.html",
