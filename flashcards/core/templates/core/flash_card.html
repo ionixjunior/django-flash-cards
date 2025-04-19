@@ -26,3 +26,7 @@
 
 <a href="{% url 'deck_list' %}">Back to deck list</a>
 {% endblock %}
+
+{% block scripts %}
+<script src="{% static 'core/js/flash_card.js' %}" defer></script>
+{% endblock %}
