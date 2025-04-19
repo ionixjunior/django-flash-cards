@@ -14,8 +14,8 @@
     {% csrf_token %}
 
     <div class="flash-card">
-        <div class="front">{{ card.front }}</div>
-        <div class="back">{{ card.back }}</div>
+        <div class="card-front">{{ card.front }}</div>
+        <div class="card-back">{{ card.back }}</div>
     </div>
 
     <button type="submit" name="feedback" value="again">Again</button>
