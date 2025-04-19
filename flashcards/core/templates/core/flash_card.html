@@ -22,6 +22,7 @@
     <button type="submit" name="feedback" value="hard">Hard</button>
     <button type="submit" name="feedback" value="good">Good</button>
     <button type="submit" name="feedback" value="easy">Easy</button>
+    <input type="hidden" name="card_id" value="{{ card.id }}" />
 </form>
 
 <a href="{% url 'deck_list' %}">Back to deck list</a>
