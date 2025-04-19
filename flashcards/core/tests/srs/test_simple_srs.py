@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 
 from django.test import TestCase
 
@@ -7,3 +8,12 @@ from ...srs.simple_srs import SimpleSRS
 class SimpleSRSTest(TestCase):
     def setUp(self):
         self.simple_srs = SimpleSRS()
+        self.today = datetime.now()
+
+    def test_calculate_next_review_date_should_return_correct_date(self):
+        feedback = 'hard'
+        next_review_date = self.today + timedelta(days=1)
+
+        result = self.simple_srs.calculate_next_review_date(self.today, feedback)
+
+        self.assertEqual(result, next_review_date)
