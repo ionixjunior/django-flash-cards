@@ -33,3 +33,11 @@ class SimpleSRSTest(TestCase):
         result = self.simple_srs.calculate_next_review_date(self.today, feedback)
 
         self.assertEqual(result, next_review_date)
+
+    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_easy(self):
+        feedback = 'easy'
+        next_review_date = self.today + timedelta(days=7)
+
+        result = self.simple_srs.calculate_next_review_date(self.today, feedback)
+
+        self.assertEqual(result, next_review_date)
