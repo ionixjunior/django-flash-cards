@@ -1,6 +1,7 @@
 from datetime import timedelta
 
 
+# pylint: disable=too-few-public-methods
 class SimpleSRS:
     def calculate_next_review_date(self, today, feedback):
         if feedback == 'again':
