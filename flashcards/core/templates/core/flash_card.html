@@ -4,4 +4,13 @@
 
 {% block content %}
 <h1>Flash card</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit" name="feedback" value="again">Again</button>
+    <button type="submit" name="feedback" value="hard">Hard</button>
+    <button type="submit" name="feedback" value="good">Good</button>
+    <button type="submit" name="feedback" value="easy">Easy</button>
+</form>
 {% endblock %}
