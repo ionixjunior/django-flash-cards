@@ -16,8 +16,13 @@
         {% csrf_token %}
 
         <div class="flash-card mb-3">
-            <div class="card-front">{{ card.front }}</div>
-            <div class="card-back">{{ card.back }}</div>
+            <div class="card-front">
+                <p>{{ card.front }}</p>
+                <small class="text-body-secondary fst-italic">(Click to flip)</small>
+            </div>
+            <div class="card-back">
+                <p>{{ card.back }}</p>
+            </div>
         </div>
 
         <div class="feedback-buttons">
