@@ -10,6 +10,7 @@
 {% block content %}
 <h1>Studying: {{ deck_name }}</h1>
 
+{%if card is not None %}
 <form method="post">
     {% csrf_token %}
 
@@ -24,6 +25,9 @@
     <button type="submit" name="feedback" value="easy">Easy</button>
     <input type="hidden" name="card_id" value="{{ card.id }}" />
 </form>
+{% else %}
+<p>No more cards in this deck. Please, go back later.</p>
+{% endif %}
 
 <a href="{% url 'deck_list' %}">Back to deck list</a>
 {% endblock %}
