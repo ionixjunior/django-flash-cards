@@ -40,3 +40,17 @@ class CardManagerTest(TestCase):
 
         self.assertIsNotNone(next_card)
         self.assertEqual(next_card.id, deck.id)
+
+    def test_nex_card_should_return_the_older_card(self):
+        two_days_before = datetime.today() - timedelta(days=2)
+        one_day_before = datetime.today() - timedelta(days=1)
+        today = datetime.today()
+        deck = Deck.objects.create(name="Test Deck")
+        Card.objects.create(deck_id=deck, front="Test Front", back="Test Back", next_review_date=two_days_before)
+        Card.objects.create(deck_id=deck, front="Test Front 2", back="Test Back 2", next_review_date=one_day_before)
+        Card.objects.create(deck_id=deck, front="Test Front 3", back="Test Back 3", next_review_date=today)
+        Card.objects.create(deck_id=deck, front="Test Front 4", back="Test Back 4")
+
+        next_card = Card.objects.next_card(deck)
+
+        self.assertEqual(next_card.id, two_days_before.id)
