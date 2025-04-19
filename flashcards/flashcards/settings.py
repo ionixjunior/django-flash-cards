@@ -24,7 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-p#8rix$^*-bxhu_$@p%fkhqiv-&3hxn_m%a*3#ur970)%c7c=q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+APP_DEBUG = os.environ.get('APP_DEBUG', 'True').lower() == 'true'
+if APP_DEBUG is None:
+    APP_DEBUG = True
+DEBUG = APP_DEBUG
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
@@ -84,10 +87,14 @@ INTERNAL_IPS = [
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+DATABASE_FILE = os.environ.get('APP_DATABASE_FILE')
+if DATABASE_FILE is None:
+    DATABASE_FILE = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE_FILE,
         'TEST': {
             'NAME': ':memory:',
         }
