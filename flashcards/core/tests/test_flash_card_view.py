@@ -9,7 +9,7 @@ class FlashCardViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.deck1 = Deck.objects.create(name="Test Deck 1")
-        Card.objects.create(deck_id=cls.deck1, front="Test Front 1", back="Test Back 1")
+        cls.card1 = Card.objects.create(deck_id=cls.deck1, front="Test Front 1", back="Test Back 1")
 
     def setUp(self):
         self.client = Client()
@@ -25,3 +25,9 @@ class FlashCardViewTest(TestCase):
 
         self.assertTrue('deck_name' in response.context)
         self.assertEqual(response.context['deck_name'], "Test Deck 1")
+
+    def test_flash_card_view_when_accessed_should_have_card(self):
+        response = self.client.get(self.flash_card_url)
+
+        self.assertTrue('card' in response.context)
+        self.assertEqual(response.context['card'].id, self.card1.id)
