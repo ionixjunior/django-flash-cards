@@ -20,9 +20,11 @@ def flash_card(request, deck_id):
 
         card_id = request.POST.get("card_id")
         feedback = request.POST.get("feedback")
+        srs = SimpleSRS()
+        next_review_date = srs.calculate_next_review_date(today=current_date, feedback=feedback)
         card = Card.objects.get(pk=card_id)
         card.last_review_date = current_date
-        card.next_review_date = SimpleSRS().calculate_next_review_date(today=current_date, feedback=feedback)
+        card.next_review_date = next_review_date
         card.save()
 
     card = Card.objects.next_card(current_date=current_date, deck=deck)
