@@ -10,7 +10,7 @@
 {% block content %}
 <h1>Studying: {{ deck_name }}</h1>
 
-{%if card is not None %}
+{% if card is not None %}
 <form method="post">
     {% csrf_token %}
 
