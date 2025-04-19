@@ -17,9 +17,11 @@ class FlashCardViewTest(TestCase):
 
     def test_card_view_when_accessed_should_return_200(self):
         response = self.client.get(self.flash_card_url)
+
         self.assertEqual(response.status_code, 200)
 
     def test_card_view_when_accessed_should_have_deck_name(self):
         response = self.client.get(self.flash_card_url)
+
         self.assertTrue('deck_name' in response.context)
         self.assertEqual(response.context['deck_name'], "Test Deck 1")
