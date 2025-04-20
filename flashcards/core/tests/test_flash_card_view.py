@@ -20,6 +20,12 @@ class FlashCardViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
 
+    def test_flash_card_view_should_get_404_when_deck_does_not_exist(self):
+        invalid_deck_id = 99999
+        response = self.client.get(reverse('flash_card', args=[invalid_deck_id]))
+
+        self.assertEqual(response.status_code, 404)
+
     def test_flash_card_view_when_accessed_should_have_deck_name(self):
         response = self.client.get(self.flash_card_url)
 

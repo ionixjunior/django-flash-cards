@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 
 from .models import Deck, Card
@@ -11,7 +11,7 @@ def deck_list(request):
 
 
 def flash_card(request, deck_id):
-    deck = Deck.objects.get(pk=deck_id)
+    deck = get_object_or_404(Deck, pk=deck_id)
     current_date = timezone.now()
 
     if request.method == "POST":
