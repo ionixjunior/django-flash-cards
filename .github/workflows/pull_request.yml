@@ -28,9 +28,9 @@ jobs:
       run: |
         python manage.py migrate
     
-    - name: Run pylint
+    - name: Run ruff
       run: |
-        pylint --django-settings-module=flashcards.settings .
+        ruff check .
     
     - name: Run tests
       run: |

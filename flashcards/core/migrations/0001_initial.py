@@ -15,7 +15,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Deck',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ('name', models.CharField(max_length=50)),
                 ('last_studied', models.DateTimeField()),
             ],
@@ -23,12 +31,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Card',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ('front', models.CharField(max_length=100)),
                 ('back', models.CharField(max_length=100)),
                 ('last_review_date', models.DateTimeField()),
                 ('next_review_date', models.DateTimeField()),
-                ('deck_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.deck')),
+                (
+                    "deck_id",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="core.deck"
+                    ),
+                ),
             ],
         ),
     ]

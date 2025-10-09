@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
 
-from .models import Deck, Card
+from .models import Card, Deck
 from .srs.simple_srs import SimpleSRS
 
 
@@ -21,7 +21,9 @@ def flash_card(request, deck_id):
         card_id = request.POST.get("card_id")
         feedback = request.POST.get("feedback")
         srs = SimpleSRS()
-        next_review_date = srs.calculate_next_review_date(today=current_date, feedback=feedback)
+        next_review_date = srs.calculate_next_review_date(
+            today=current_date, feedback=feedback
+        )
         card = Card.objects.get(pk=card_id)
         card.last_review_date = current_date
         card.next_review_date = next_review_date
