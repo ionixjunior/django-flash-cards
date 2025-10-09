@@ -3,7 +3,8 @@ from datetime import timedelta
 from django.test import TestCase
 from django.utils import timezone
 
-from ..models import Deck, Card
+from ..models import Card, Deck
+
 
 class CardManagerTest(TestCase):
     def test_next_card_should_be_none_when_no_cards_in_deck(self):
@@ -14,7 +15,7 @@ class CardManagerTest(TestCase):
 
         self.assertIsNone(next_card)
 
-    def test_next_card_should_be_none_when_cards_in_deck_has_future_next_review_date(self):
+    def test_next_card_is_none_if_future_review_date(self):
         today = timezone.now()
         next_review_date = today + timedelta(days=1)
         deck = Deck.objects.create(name="Test Deck")

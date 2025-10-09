@@ -1,9 +1,9 @@
-from datetime import datetime, UTC
+from datetime import UTC, datetime
 
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..models import Deck, Card
+from ..models import Card, Deck
 
 
 class DeckListViewTest(TestCase):
@@ -42,15 +42,19 @@ class DeckListViewTest(TestCase):
         self.assertIn("Test Deck 1", deck_names)
         self.assertIn("Test Deck 2", deck_names)
 
-    def test_decklist_when_accessed_should_list_number_of_cards_of_each_deck(self):
+    def test_decklist_lists_card_counts(self):
         response = self.client.get(self.deck_list_url)
-        deck_cards_count = {deck.name: deck.card_set.count() for deck in response.context['decks']}
+        deck_cards_count = {
+            deck.name: deck.card_set.count() for deck in response.context["decks"]
+        }
         self.assertEqual(deck_cards_count["Test Deck 1"], 1)
         self.assertEqual(deck_cards_count["Test Deck 2"], 2)
 
-    def test_decklist_when_accessed_should_list_last_studied_date_of_each_deck(self):
+    def test_decklist_lists_last_studied(self):
         response = self.client.get(self.deck_list_url)
-        deck_last_studied = {deck.name: deck.last_studied for deck in response.context['decks']}
+        deck_last_studied = {
+            deck.name: deck.last_studied for deck in response.context["decks"]
+        }
         self.assertIsNone(deck_last_studied["Test Deck 1"])
         self.assertEqual(
             deck_last_studied["Test Deck 2"],

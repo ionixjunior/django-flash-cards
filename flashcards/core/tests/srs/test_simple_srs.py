@@ -11,7 +11,7 @@ class SimpleSRSTest(TestCase):
         self.simple_srs = SimpleSRS()
         self.today = timezone.now()
 
-    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_again(self):
+    def test_next_review_date_with_again_feedback(self):
         feedback = 'again'
         next_review_date = self.today + timedelta(minutes=1)
 
@@ -19,7 +19,7 @@ class SimpleSRSTest(TestCase):
 
         self.assertEqual(result, next_review_date)
 
-    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_hard(self):
+    def test_next_review_date_with_hard_feedback(self):
         feedback = 'hard'
         next_review_date = self.today + timedelta(days=1)
 
@@ -27,7 +27,7 @@ class SimpleSRSTest(TestCase):
 
         self.assertEqual(result, next_review_date)
 
-    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_good(self):
+    def test_next_review_date_with_good_feedback(self):
         feedback = 'good'
         next_review_date = self.today + timedelta(days=3)
 
@@ -35,7 +35,7 @@ class SimpleSRSTest(TestCase):
 
         self.assertEqual(result, next_review_date)
 
-    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_easy(self):
+    def test_next_review_date_with_easy_feedback(self):
         feedback = 'easy'
         next_review_date = self.today + timedelta(days=7)
 
@@ -43,7 +43,7 @@ class SimpleSRSTest(TestCase):
 
         self.assertEqual(result, next_review_date)
 
-    def test_calculate_next_review_date_should_return_correct_date_when_feedback_is_invalid(self):
+    def test_next_review_date_with_invalid_feedback(self):
         feedback = 'invalid'
         next_review_date = self.today + timedelta(days=0)
 
